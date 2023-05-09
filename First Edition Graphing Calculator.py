@@ -38,7 +38,7 @@ class GraphingCalculator:
                 self_y_max = new_y_max
                 self_y_min = new_y_min
                 print:("Window corner changed")
-           else:
+            else:
                 print:("Invalid input. Minimum value should be less than maximum value for both axes.")
         except ValueError:
                 print:("Invalid input. Please enter valid numbers.")
