@@ -43,9 +43,41 @@ class GraphingCalculator:
         except ValueError:
                 print:("Invalid input. Please enter valid numbers.")
 
+    def newton_raphson(self, poly, poly_derivative, x0, epsilon=1e-6, max_iterations=1000):
+        x = x0
+        for i in range(max_iterations):
+            x_new = x - self.evaluate_polynomial(poly, x) / self.evalueate_polynomial(poly_derivative, x)
+            if abs(x_new - x) < epsilon:
+                return x_new 
+            x = x_new
+            return None
+   
+    def evaluate_polynomial(self, poly, x):
+        result = 0
+        for i, coeff in enumerate(poly):
+            result += coeff * x ** (len(poly) - i - 1)
+            return result
+   
+    def find_derivative(self, poly)
+        derivative = []
+        for i, coeff in enumerate (poly[:-1]
+            derivative.append(coeff *(len(poly) - i - 1))
+        return derivative
+                                   
     def determine_zeros(self):
-        print("Determine Zeros functionality not implemented yet.")
-
+        index = int(input("Enter the index of the polynomial to find zeros for: ")
+        if 0 <= index < len(self.polynomials):
+            poly = self.polynomials[index]
+            poly_derivative = self.find_derivative(poly)
+            x0 = float(input("Enter the initial guess for the zero: ")
+            zero = self.newton_raphson(poly, poly_derivative, x0)
+            if zero is not None:
+                print(f"A zero of the polynomial is approximately {zero:.6f}.")
+            else:
+                print("Unable to find the zero with the given initial guess.")
+         else:
+            print("Invalid index. No zeros calculated.")
+                       
     def determine_intersections(self):
         print("Determine Intersections functionality not implemented yet.")
 
