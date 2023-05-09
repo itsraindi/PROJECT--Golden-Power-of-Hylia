@@ -58,7 +58,7 @@ class GraphingCalculator:
             result += coeff * x ** (len(poly) - i - 1)
             return result
    
-    def find_derivative(self, poly)
+    def find_derivative(self, poly):
         derivative = []
         for i, coeff in enumerate (poly[:-1]
             derivative.append(coeff *(len(poly) - i - 1))
@@ -75,7 +75,7 @@ class GraphingCalculator:
                 print(f"A zero of the polynomial is approximately {zero:.6f}.")
             else:
                 print("Unable to find the zero with the given initial guess.")
-         else:
+        else:
             print("Invalid index. No zeros calculated.")
                        
     def determine_intersections(self):
