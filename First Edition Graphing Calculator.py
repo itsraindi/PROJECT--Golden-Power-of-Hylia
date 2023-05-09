@@ -3,6 +3,10 @@ class GraphingCalculator:
         self.polynomials = []
         self.graph = g
         self.poly = p
+        self.x_min = -10
+        self.x_max = 10
+        self.y_min = -10
+        self.y_max = 10
 
     def add_polynomial(self, coeffs):
         self.polynomials.append(coeffs)
@@ -22,7 +26,22 @@ class GraphingCalculator:
             print("Invalid index. No polynomial removed.")
 
     def change_window_corner(self):
-        print("Change Window Corner functionality not implemented yet.")
+        try:
+            new_x_max = float(input("Enter your minimum value for x-axis: "))
+            new_x_min = float(input("Enter your maximum value for x-axis: "))
+            new_y_max = float(input("Enter your minimum value for y-axis: "))
+            new_y_min = float(input("Enter your maximum value for y-axis: "))
+            
+            if new_x_min < new_x_max and new_y_min < new_y_max:
+                self_x_max = new_x_max
+                self_x_min = new_x_min
+                self_y_max = new_y_max
+                self_y_min = new_y_min
+                print:("Window corner changed")
+           else:
+                print:("Invalid input. Minimum value should be less than maximum value for both axes.")
+        except ValueError:
+                print:("Invalid input. Please enter valid numbers.")
 
     def determine_zeros(self):
         print("Determine Zeros functionality not implemented yet.")
