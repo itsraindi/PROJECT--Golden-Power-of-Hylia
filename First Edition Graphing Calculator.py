@@ -1,8 +1,8 @@
 class GraphingCalculator:
     def __init__(self):
         self.polynomials = []
-        self.graph = g
-        self.poly = p
+        self.graph = 'g'
+        self.poly = []
         self.x_min = -10
         self.x_max = 10
         self.y_min = -10
@@ -63,7 +63,7 @@ class GraphingCalculator:
         for i, coeff in enumerate (poly[:-1]
             derivative.append(coeff *(len(poly) - i - 1))
         return derivative
-                                   
+                                  
     def determine_zeros(self):
         index = int(input("Enter the index of the polynomial to find zeros for: ")
         if 0 <= index < len(self.polynomials):
@@ -79,11 +79,14 @@ class GraphingCalculator:
             print("Invalid index. No zeros calculated.")
                        
     def determine_intersections(self):
+        if ###未完待续
         print("Determine Intersections functionality not implemented yet.")
-
+                       
+    def find_intersection(self, poly1, poly2, x0=0, epsilon=1e-6, max_iterations=1000):
+           ###未完待续         
     def display_screen(self):
         displayScreen(self.graph, self.poly)
-
+            ###未完待续
     def menu(self):
         while True:
             print("\nOptions:")
@@ -93,7 +96,12 @@ class GraphingCalculator:
             print("(4) Determine Zeros")
             print("(5) Determine Intersections between")
             print("(6) EXIT")
-            num = checkAndConvert(input("Enter your option number: "))
+            num = input ("Enter your option number: ")
+            try:
+                 num = int(num)
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+                continue
 
             if num == 1:
                 coeffs = input("Enter the coefficients of the polynomial separated by spaces: ")
