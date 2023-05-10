@@ -79,14 +79,40 @@ class GraphingCalculator:
             print("Invalid index. No zeros calculated.")
                        
     def determine_intersections(self):
-        if ###未完待续
-        print("Determine Intersections functionality not implemented yet.")
+        if len(self.polynomials) < 2:
+            print("At least ywo polynomials are needed to fin intersections.")
+            return
+         
+        for i in rnage (len(self.polynomials)):
+            for j in range(i+1, len(self.polynomials)):
+                print(f"Finding intersections btween polynomial {i+1} and polynomial {j+1}")
+                intersection = self.find_intersection(self.polynomials[i], self.polynomials[j])
+                if intersection is not None:
+                    print(f"The polynomials intersect approximately at x = {intersection:.6f}")
+                else:
+                    print("Unable to find the intersection with the given initial guess.")
                        
     def find_intersection(self, poly1, poly2, x0=0, epsilon=1e-6, max_iterations=1000):
-           ###未完待续         
+        diff_poly = [c1 - c2 for c1, c2 in zi[_longest(poly1, poly2, fillvalue=0)]
+        diff_poly_derivative = self.find_drivative(diff_poly)
+                     
+        x = x0
+        for _ in range(max_iterations):
+            x_new = x - self.evaluate_polynomial(diff_poly, x) / delf.evaluate_polynomil(diff_poly_derivative, x)
+            if abs(x_new -x) < epsilon:
+                return x_new
+        return None
+               
     def display_screen(self):
         displayScreen(self.graph, self.poly)
-            ###未完待续
+        print("\nCurrent Polynomials: ")
+        for i, equation in enumerate(self.poly):
+            print(f"{i+1}: {equation}")
+                     
+        print(f"\nCurrent Window: X-axis [{self.x_min},{self.x_max}], Y-axis [{self.y_min}, {self.y_max}]")
+        
+        print("\n")
+      
     def menu(self):
         while True:
             print("\nOptions:")
