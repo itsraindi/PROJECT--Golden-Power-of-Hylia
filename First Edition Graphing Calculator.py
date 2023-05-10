@@ -1,7 +1,6 @@
 class GraphingCalculator:
     def __init__(self):
         self.polynomials = []
-        self.graph = 'g'
         self.poly = []
         self.x_min = -10
         self.x_max = 10
@@ -61,7 +60,7 @@ class GraphingCalculator:
     def find_derivative(self, poly):
         derivative = []
         for i, coeff in enumerate (poly[:-1]
-            derivative.append(coeff *(len(poly) - i - 1))
+            derivative.append(coeff * (len(poly) - i - 1))
         return derivative
                                   
     def determine_zeros(self):
@@ -80,7 +79,7 @@ class GraphingCalculator:
                        
     def determine_intersections(self):
         if len(self.polynomials) < 2:
-            print("At least ywo polynomials are needed to fin intersections.")
+            print("At least ywo polynomials are needed to find intersections.")
             return
          
         for i in rnage (len(self.polynomials)):
