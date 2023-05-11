@@ -32,12 +32,8 @@ class GraphingCalculator:
             result += coeff * x ** (len(coeffs) - i - 1)
         return result
 
-    def find_derivative(self, poly):
-        derivative = []
-        n = len(poly)
-        for i in range(n - 1):
-            derivative.append(poly[i] * (n - i - 1))
-        return derivative
+    def evaluate_function(self, function, x):
+        return eval(function)
 
     def plot_polynomials(self):
         data = [[' ' for _ in range(self.resolution)] for _ in range(self.resolution)]
@@ -53,42 +49,30 @@ class GraphingCalculator:
         for row in data:
             print(''.join(row))
 
-    def find_intersection(self, poly1, poly2, x0=0, epsilon=1e-6, max_iterations=1000):
-        # This function assumes that poly1 and poly2 have the same length
-        diff_poly = [poly1[i] - poly2[i] for i
-    def find_intersection(self, poly1, poly2, x0=0, epsilon=1e-6, max_iterations=1000):
-        # Ensure that poly1 and poly2 have the same length
-        len_diff = len(poly1) - len(poly2)
-        if len_diff > 0:
-            poly2 = [0]*len_diff + poly2
-        elif len_diff < 0:
-            poly1 = [0]*(-len_diff) + poly1
+    def plot_function(self, function):
+        data = [[' ' for _ in range(self.resolution)] for _ in range(self.resolution)]
 
-        diff_poly = [poly1[i] - poly2[i] for i in range(len(poly1))]
-        diff_poly_derivative = self.find_derivative(diff_poly)
-        
-        x = x0
-        for _ in range(max_iterations):
-            f = self.evaluate_polynomial(diff_poly, x)
-            f_prime = self.evaluate_polynomial(diff_poly_derivative, x)
-            if f_prime == 0:
-                return None
-            x_new = x - f / f_prime
-            if abs(x_new - x) < epsilon:
-                return x_new
-            x = x_new
-        return None
+        for i in range(self.resolution):
+            x = self.x_min + i * (self.x_max - self.x_min) / (self.resolution - 1)
+            y = self.evaluate_function(function, x)
+            j = int((y - self.y_min) * (self.resolution - 1) / (self.y_max - self.y_min))
+            if 0 <= j < self.resolution:
+                data[self.resolution - 1 - j][i] = '*'
 
-    def determine_intersections(self):
-        if len(self.polynomials) < 2:
-            print("At least two polynomials are needed to find intersections.")
-            return
+        for row in data:
+            print(''.join(row))
 
-        for i in range(len(self.polynomials)):
-            for j in range(i + 1, len(self.polynomials)):
-                print(f"Finding intersections between polynomial {i+1} and polynomial {j+1}")
-                intersection = self.find_intersection(self.polynomials[i], self.polynomials[j])
-                if intersection is not None:
-                    print(f"The polynomials intersect approximately at x = {intersection:.6f}")
-                else:
-                    print("Unable to find the intersection with the given initial guess.")
+
+def main():
+    calculator = GraphingCalculator()
+    calculator.add_polynomial([1, -2, 1])  # Adds the polynomial x^2 - 2x + 1
+    calculator.add_polynomial([-1, 0, 1])  # Adds the polynomial -x^2 + 1
+    calculator.change_window_corner(-2, 2, -2, 2)  # Changes the graph viewing window
+    calculator.plot_polynomials()  # Plots the polynomials
+    
+    function = input("Enter a function: ")
+    calculator.plot_function(function)  # Plots the user-defined function
+
+
+if __name__ == "__main__":
+    main()
