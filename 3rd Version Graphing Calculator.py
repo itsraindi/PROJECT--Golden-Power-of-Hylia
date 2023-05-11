@@ -33,7 +33,14 @@ class GraphingCalculator:
         return result
 
     def evaluate_function(self, function, x):
-        return eval(function)
+        safe_dict = {'x': x}
+        try:
+            result = eval(function, safe_dict)
+            return result
+        except Exception as e:
+            print("Error evaluating the function:", str(e))
+            return None
+
 
     def plot_polynomials(self):
         data = [[' ' for _ in range(self.resolution)] for _ in range(self.resolution)]
@@ -65,10 +72,11 @@ class GraphingCalculator:
 
 def main():
     calculator = GraphingCalculator()
-    calculator.add_polynomial([1, -2, 1])  # Adds the polynomial x^2 - 2x + 1
-    calculator.add_polynomial([-1, 0, 1])  # Adds the polynomial -x^2 + 1
-    calculator.change_window_corner(-2, 2, -2, 2)  # Changes the graph viewing window
-    calculator.plot_polynomials()  # Plots the polynomials
+    ## TEST CODE 测试用的
+##    calculator.add_polynomial([1, -2, 1])  # Adds the polynomial x^2 - 2x + 1
+##    calculator.add_polynomial([-1, 0, 1])  # Adds the polynomial -x^2 + 1
+##    calculator.change_window_corner(-2, 2, -2, 2)  # Changes the graph viewing window
+##    calculator.plot_polynomials()  # Plots the polynomials
     
     function = input("Enter a function: ")
     calculator.plot_function(function)  # Plots the user-defined function
